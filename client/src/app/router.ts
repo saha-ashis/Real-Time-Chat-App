@@ -21,7 +21,9 @@ export const appRoutes: Routes=[
         }]
     },
     {
-        path:'dashboard', component:UserProfileComponent,canActivate:[AuthGuard]
+        path:'dashboard', 
+        component:UserProfileComponent,
+        canActivate:[AuthGuard]
     },
     {
         path:'',

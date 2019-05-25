@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -17,9 +17,8 @@ export class AuthGuard implements CanActivate {
       if(!this.userService.isUserLoggedIn()){
         this.router.navigateByUrl('/signin');
         this.userService.removeTheJwtToken();
-        return true;
-      }else{
         return false;
       }
+      return true;
   }
 }
