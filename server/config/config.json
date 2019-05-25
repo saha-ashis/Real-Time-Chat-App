@@ -1,0 +1,14 @@
+{
+    "development":{
+        "PORT":3000,
+        "MONGODB_URI":"mongodb://localhost:27017/RealTimeChatDB",
+        "JWT_SECRT":"!SECASHIS#123",
+        "JWT_EXP_TIME":"2m"
+    },
+    "production":{
+        "PORT":80,
+        "MONGODB_URI":"mongodb://abc/DB_Name",
+        "JWT_SECRT":"!SECASHIS#123",
+        "JWT_EXP_TIME":"2m"
+    }
+}

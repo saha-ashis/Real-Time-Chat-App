@@ -1,0 +1,29 @@
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <input type="text" name="name" #name="ngModel" [(ngModel)]="userService.selectedUser.name" placeholder="Enter Ypur Name" 
+  required [ngClass]="{ 'invalid-textbox' :signUpForm.submitted && !name.valid }">
+  <div *ngIf="signUpForm.submitted && !name.valid">
+    <label class="validation-message">Please enter your Name!</label>
+  </div>
+  <input type="text" name="email" #email="ngModel" [(ngModel)]="userService.selectedUser.email" placeholder="Enter your Email Id" 
+  required [pattern]="emailRegx" [ngClass]="{ 'invalid-textbox' :signUpForm.submitted && !email.valid }">
+  <div *ngIf="signUpForm.submitted && email.errors">
+    <label *ngIf="email.errors.required" class="validation-message">Please enter your Email!</label>
+    <label *ngIf="email.errors.pattern" class="validation-message">Oops! Enterd Email is Invalid!</label>
+  </div>
+  <input type="password" name="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" placeholder="Enter Your Password" 
+  required minlength="6" [ngClass]="{ 'invalid-textbox' :signUpForm.submitted && !password.valid }">
+  <div *ngIf="signUpForm.submitted && password.errors">
+    <label *ngIf="password.errors.required" class="validation-message">Please enter your Password!</label>
+    <label *ngIf="password.errors.minlength" class="validation-message">Password Should be 6 character long</label>
+  </div>
+  <input type="submit" value="Create Account">
+</form>
+
+<!--Success Message-->
+<div class="success" *ngIf="showSuccessMessage">
+  Your account is created Successfully.
+</div>
+<!--Error Message-->
+<div class="alert" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
