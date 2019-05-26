@@ -23,6 +23,10 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl+'/authenticateUser', authCredentials);
   }
 
+  getTheUserProfile(){
+    return this.http.get(environment.apiBaseUrl+'/userProfile');
+  }
+
   setTheJwtToken(jwtToken: string){
     localStorage.setItem('jwtToken',jwtToken);
   }
