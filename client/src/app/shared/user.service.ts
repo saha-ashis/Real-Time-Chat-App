@@ -15,6 +15,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+// Http Methods
+
   CreateTheUser(user:User){
     return this.http.post(environment.apiBaseUrl+'/register',user);
   }
@@ -26,6 +28,8 @@ export class UserService {
   getTheUserProfile(){
     return this.http.get(environment.apiBaseUrl+'/userProfile');
   }
+
+  //Helper Methods
 
   setTheJwtToken(jwtToken: string){
     localStorage.setItem('jwtToken',jwtToken);
