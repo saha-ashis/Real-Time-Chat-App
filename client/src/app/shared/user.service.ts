@@ -35,6 +35,10 @@ export class UserService {
     localStorage.setItem('jwtToken',jwtToken);
   }
 
+  getTheToken(){
+    localStorage.getItem('jwtToken');
+  }
+
   removeTheJwtToken(){
     localStorage.removeItem('jwtToken');
   }
