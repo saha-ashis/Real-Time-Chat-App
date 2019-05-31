@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 
 // Components Imports Statements
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { appRoutes } from './router';
 
 // Guard
 import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 
@@ -38,7 +39,14 @@ import { AuthGuard } from './auth/auth.guard';
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [UserService,AuthGuard],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },
+  AuthGuard,UserService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

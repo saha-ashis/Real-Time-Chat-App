@@ -1,33 +1,34 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
-import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Router } from "@angular/router";
-import { UserService } from "../shared/user.service";
+    import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor{
+    import { Injectable } from '@angular/core';
+    import { tap } from 'rxjs/operators';
+    import { Router } from "@angular/router";
+    import { UserService } from "../shared/user.service";
+
+    @Injectable()
+    export class AuthInterceptor implements HttpInterceptor {
+
+        constructor(private userService : UserService,private router : Router){}
     
-    constructor(private userService : UserService,private router : Router){}
-
-    intercept(req:HttpRequest<any>, next: HttpHandler){
-
-        if(req.headers.get('noauth')){
-            return next.handle(req.clone());
-        }else{
-            const clonedReq=req.clone({
-                headers:req.headers.set("Authorization", "Bearer " + this.userService.getTheToken())
-            });
-            return next.handle(clonedReq).pipe(
-                tap(
-                    event=>{ },
-                    err=>{
-                        if (err.error.auth == false){
-                            this.router.navigateByUrl('/signin');
-                        }
-                    }
-                )
-            );
+        intercept(req: HttpRequest<any>, next: HttpHandler) {
+    
+            if (req.headers.get('noauth'))
+                return next.handle(req.clone());
+            else {
+                const clonedreq = req.clone({
+                    headers: req.headers.set("Authorization", "Bearer " + this.userService.getTheToken())
+                });
+                console.log(this.userService.getTheToken());
+                console.log(clonedreq);
+                return next.handle(clonedreq).pipe(
+                    tap(
+                        event => { },
+                        err => {
+                            if (err.error.auth == false) {
+                                this.router.navigateByUrl('/signin');
+                            }
+                        })
+                );
+            }
         }
-
     }
-}

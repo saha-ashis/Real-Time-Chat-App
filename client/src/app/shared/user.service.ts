@@ -13,16 +13,18 @@ export class UserService {
     password:''
   };
 
+  noAuthHeadr={ headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+
   constructor(private http: HttpClient) { }
 
 // Http Methods
 
   CreateTheUser(user:User){
-    return this.http.post(environment.apiBaseUrl+'/register',user);
+    return this.http.post(environment.apiBaseUrl+'/register',user,this.noAuthHeadr);
   }
 
   signIn(authCredentials){
-    return this.http.post(environment.apiBaseUrl+'/authenticateUser', authCredentials);
+    return this.http.post(environment.apiBaseUrl+'/authenticateUser', authCredentials,this.noAuthHeadr);
   }
 
   getTheUserProfile(){
@@ -36,7 +38,7 @@ export class UserService {
   }
 
   getTheToken(){
-    localStorage.getItem('jwtToken');
+    return localStorage.getItem('jwtToken');
   }
 
   removeTheJwtToken(){
