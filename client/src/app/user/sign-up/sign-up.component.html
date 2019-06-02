@@ -1,4 +1,9 @@
 <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <input type="text" name="username" #username="ngModel" [(ngModel)]="userService.selectedUser.username" placeholder="Enter Ypur User Name" 
+  required [ngClass]="{ 'invalid-textbox' :signUpForm.submitted && !username.valid }">
+  <div *ngIf="signUpForm.submitted && !username.valid">
+    <label class="validation-message">Please enter your User Name!</label>
+  </div>  
   <input type="text" name="name" #name="ngModel" [(ngModel)]="userService.selectedUser.name" placeholder="Enter Ypur Name" 
   required [ngClass]="{ 'invalid-textbox' :signUpForm.submitted && !name.valid }">
   <div *ngIf="signUpForm.submitted && !name.valid">

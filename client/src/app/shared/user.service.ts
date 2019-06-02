@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 export class UserService {
 
   selectedUser:User={
+    username:'',
     name:'',
     email:'',
     password:''

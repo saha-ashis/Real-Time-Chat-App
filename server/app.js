@@ -6,6 +6,7 @@ const express= require('express');
 const bodyParser=require('body-parser');
 const cors=require('cors');
 const passport=require('passport');
+const socket = require('socket.io');
 
 const routesIndex=require('./routers/index.router');
 
@@ -28,4 +29,16 @@ app.use((err, req, res, next) => {
 });
 
 const port=process.env.PORT;
-app.listen(port,()=>console.log(`App started at port ${port}...`));
+const server=app.listen(port,()=>console.log(`App started at port ${port}...`));
+const io=socket.listen(server);
+io.on('connection',(socket)=>{
+    console.log('New connection Made');
+})
+// io=io(server);
+// app.use(function(req,res,next){
+//     req.io=io;
+//     next();
+// });
+// io.on('connection',function(socket){
+//     console.log('socket.io connection made');
+// });

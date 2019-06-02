@@ -14,6 +14,7 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 
 // Service
 import { UserService } from './shared/user.service';
+import { ChatService } from './shared/chat.service';
 
 //Routes
 import { appRoutes } from './router';
@@ -21,6 +22,8 @@ import { appRoutes } from './router';
 // Guard
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -31,7 +34,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     UserComponent,
     SignUpComponent,
     UserProfileComponent,
-    SignInComponent
+    SignInComponent,
+    ChatRoomComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     useClass: AuthInterceptor,
     multi: true
   },
-  AuthGuard,UserService
+  AuthGuard,UserService,ChatService
 ],
   bootstrap: [AppComponent]
 })

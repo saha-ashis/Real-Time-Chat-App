@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/user.service';
+import { ChatService } from '../../shared/chat.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { UserService } from '../../shared/user.service';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private userService : UserService, private router : Router){
+  constructor(private userService : UserService, private chatService : ChatService,  private router : Router){
 
   }
 

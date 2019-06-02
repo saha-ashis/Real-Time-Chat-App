@@ -42,6 +42,7 @@ export class SignUpComponent implements OnInit {
 
   resetTheRegForm(form: NgForm){
     this.userService.selectedUser={
+      username:'',
       name:'',
       email:'',
       password:''

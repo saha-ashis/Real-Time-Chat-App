@@ -8,6 +8,7 @@ const lodash=require('lodash');
 module.exports.register=(req,res,next)=>{
  console.log('I am inside the register function');
  var user=new User();
+ user.username=req.body.username;
  user.name=req.body.name;
  user.email=req.body.email;
  user.password=req.body.password;
@@ -51,7 +52,7 @@ module.exports.userProfiile=(req,res,next)=>{
             if(!user){
                 return res.status(404).json({ status:false, message:'User not found' });
             }else{
-                return res.status(200).json({ status:true, user:lodash.pick(user,['name','email'])});
+                return res.status(200).json({ status:true, user:lodash.pick(user,['username','name','email'])});
             }
         }
         )
