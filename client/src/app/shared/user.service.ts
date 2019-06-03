@@ -68,4 +68,16 @@ export class UserService {
     }
   }
 
+  setTheCurrentUserData(userData){
+    localStorage.setItem('logedinUserData',userData);
+  }
+
+  getTheCurrentUserData(){
+    localStorage.getItem('logedinUserData');
+  }
+
+  removeTheCurrentUserData(){
+    localStorage.removeItem('logedinUserData');
+  }
+
 }

@@ -33,6 +33,11 @@ const server=app.listen(port,()=>console.log(`App started at port ${port}...`));
 const io=socket.listen(server);
 io.on('connection',(socket)=>{
     console.log('New connection Made');
+    socket.on('join',(data)=>{
+        socket.join(data.room);
+        console.log(data.user+'Joined the room'+data.room);
+        socket.broadcast.to(data.room).emit('new user joined',{user:data.user,message:'has joined this room'});
+    })
 })
 // io=io(server);
 // app.use(function(req,res,next){

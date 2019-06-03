@@ -14,4 +14,8 @@ export class ChatService {
   
   constructor(private http: HttpClient) { }
 
+  joinTheRoom(data){
+    this.socket.emit('join',data);
+  }
+
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../shared/user.service';
+import { ChatService } from '../shared/chat.service';
+
 
 @Component({
   selector: 'app-chat-room',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatRoomComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService : UserService, private chatService : ChatService,  private router : Router) { }
 
   ngOnInit() {
+    if(this.userService.isUserLoggedIn){
+      this.chatService.joinTheRoom({user:'ashis',room:'lobby'});
+    }
   }
 
 }

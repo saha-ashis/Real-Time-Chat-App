@@ -15,7 +15,8 @@ export class UserProfileComponent implements OnInit {
 
     this.userService.getTheUserProfile().subscribe(
       res=>{
-        this.userDetails=res['user']; 
+        this.userDetails=res['user'];
+        this.userService.setTheCurrentUserData(this.userDetails); 
       },
       err=>{
 
@@ -25,6 +26,7 @@ export class UserProfileComponent implements OnInit {
 
   logoutTheUser(){
     this.userService.removeTheJwtToken();
+    this.userService.removeTheCurrentUserData();
     this.router.navigateByUrl('/signin');
   }
 
